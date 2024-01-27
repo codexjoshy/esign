@@ -39,7 +39,7 @@ const PdfViewer3: React.FC<PdfViewer3Props> = () => {
  });
 
  // Attach preview image for dragged element
- preview(getEmptyImage(), { captureDraggingState: true });
+ // preview(getEmptyImage(), { captureDraggingState: true });
 
  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
   event.preventDefault();
@@ -62,6 +62,9 @@ const PdfViewer3: React.FC<PdfViewer3Props> = () => {
 
  // Handle drag end
  const handleDragEnd = () => {
+  console.log('====================================');
+  console.log("end");
+  console.log('====================================');
   setDraggedElement(null);
   setIsDragging(false);
   setDropIndicatorPosition(null);
@@ -156,7 +159,7 @@ const PdfViewer3: React.FC<PdfViewer3Props> = () => {
      }}
     />
    )}
-   <Document file="example.pdf">
+   <Document file="/sample.pdf">
     {Array.from({ length: 5 }).map((_, index) => (
      <Page key={index + 1} pageNumber={index + 1}>
       {/* Drag handle for each page */}
@@ -175,6 +178,7 @@ const PdfViewer3: React.FC<PdfViewer3Props> = () => {
         pointerEvents: isDragging && draggedElement === pdfContainerRef.current ? 'none' : 'auto',
        }}
       />
+
      </Page>
     ))}
    </Document>

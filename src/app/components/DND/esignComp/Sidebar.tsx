@@ -26,6 +26,8 @@ const DraggableElement: React.FC<DraggableElementProps> = ({ type, text }) => {
   <div
    ref={dragRef}
    style={{
+    zIndex: 100,
+    position: 'relative',
     border: '1px dashed #ccc',
     padding: '5px',
     marginBottom: '10px',

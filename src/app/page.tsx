@@ -21,17 +21,19 @@ import React from 'react';
 // import Comp10 from './components/Comp10';
 // import Comp11 from './components/RND/Comp11';
 // import Comp12 from './components/RND/Comp12';
-// import Comp13 from './components/RND/Comp13';
+import Comp13 from './components/RND/Comp13';
 // import Comp14 from './components/RND/Comp14';
 // import Comp15 from './components/RND/Comp15';
 import EsignComp from './components/DND/esignComp';
+// import Comp15 from './components/RND/Comp15';
 
 export default function Home() {
-  // return (
-  //   <DndProvider backend={HTML5Backend}>
-  //     <EsignComp />
-  //   </DndProvider>
-  // )
+  return <Comp13 />
+  return (
+    <DndProvider backend={HTML5Backend}>
+      <EsignComp />
+    </DndProvider>
+  )
   return (
     <DndProvider backend={HTML5Backend}>
       <main className='w-full min-h-[100vh] bg-white flex'>
