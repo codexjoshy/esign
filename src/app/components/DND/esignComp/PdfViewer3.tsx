@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
-import { useDrag } from 'react-dnd';
+import { useDrag, useDrop } from 'react-dnd';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
@@ -130,9 +130,16 @@ const PdfViewer3: React.FC<PdfViewer3Props> = () => {
   window.addEventListener('mouseup', handleMouseUp);
  };
 
+ const [, drop] = useDrop({
+  accept: ['ITEM_1', 'ITEM_2'],
+  drop: (item: { id: string; text: string; type: string }, monitor) => {
+   const coordinate = monitor.getClientOffset();
+   
+  },
+ });
+
  return (
   <div
-   ref={pdfContainerRef}
    onDrop={handleDrop}
    onDragOver={handleDragOver}
    style={{
@@ -159,29 +166,32 @@ const PdfViewer3: React.FC<PdfViewer3Props> = () => {
      }}
     />
    )}
-   <Document file="/sample.pdf">
-    {Array.from({ length: 5 }).map((_, index) => (
-     <Page key={index + 1} pageNumber={index + 1}>
-      {/* Drag handle for each page */}
-      <div
-       ref={dragRef}
-       onDragStart={handleDragStart}
-       onDragEnd={handleDragEnd}
-       draggable
-       style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        opacity: isDragging && draggedElement === pdfContainerRef.current ? 0.5 : 1,
-        pointerEvents: isDragging && draggedElement === pdfContainerRef.current ? 'none' : 'auto',
-       }}
-      />
+   <div ref={pdfContainerRef}>
+    <Document file="/sample.pdf">
+     {Array.from({ length: 5 }).map((_, index) => (
+      <Page key={index + 1} pageNumber={index + 1}>
+       {/* Drag handle for each page */}
+       <div
+        ref={dragRef}
+        onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}
+        draggable
+        style={{
+         position: 'absolute',
+         top: 0,
+         left: 0,
+         width: '100%',
+         height: '100%',
+         opacity: isDragging && draggedElement === pdfContainerRef.current ? 0.5 : 1,
+         pointerEvents: isDragging && draggedElement === pdfContainerRef.current ? 'none' : 'auto',
+        }}
+       />
 
-     </Page>
-    ))}
-   </Document>
+      </Page>
+     ))}
+    </Document>
+
+   </div>
    {/* Zoom controls */}
    <div style={{ position: 'absolute', top: '10px', right: '10px', zIndex: 9999 }}>
     <button onClick={zoomIn}>Zoom In</button>
