@@ -17,6 +17,7 @@
     "next": "13.5.4",
     "pdf-lib": "^1.17.1",
     "pdfjs": "^2.5.2",
+    "pdfjs-dist": "^4.0.379",
     "react": "^18",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",

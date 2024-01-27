@@ -9,14 +9,16 @@ import 'react-pdf/dist/esm/Page/TextLayer.css';
 import './Sample.css';
 
 import type { PDFDocumentProxy } from 'pdfjs-dist';
-import useDocumentModifier from './useDocumentModifier';
+// import useDocumentModifier from './useDocumentModifier';
 import React from 'react';
 import { useDragDropManager, useDrop } from 'react-dnd';
 
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
- 'pdfjs-dist/build/pdf.worker.min.js',
- import.meta.url,
-).toString();
+// pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+//  'pdfjs-dist/build/pdf.worker.min.js',
+//  import.meta.url,
+// ).toString();
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+
 
 const options = {
  cMapUrl: '/cmaps/',
@@ -30,7 +32,7 @@ const maxWidth = 800;
 type PDFFile = string | File | null;
 
 export default function DocumentPanelView() {
- const [file, setFile] = useState<PDFFile>('http://localhost:3001/sample.pdf');
+ const [file, setFile] = useState<PDFFile>('http://localhost:3000/sample.pdf');
  const [numPages, setNumPages] = useState<number>();
  const [containerRef, setContainerRef] = useState<HTMLElement | null>(null);
  const [containerWidth, setContainerWidth] = useState<number>();
@@ -52,13 +54,13 @@ export default function DocumentPanelView() {
   }
  }
 
- function onDocumentLoadSuccess({ numPages: nextNumPages }: PDFDocumentProxy): void {
-  setNumPages(nextNumPages);
- }
+ const handleDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
+  setNumPages(numPages);
+ };
 
- const { downloadPDF, setPageOptions } = useDocumentModifier({ pdfUrl: file as string })
+ // const { downloadPDF, setPageOptions } = useDocumentModifier({ pdfUrl: file as string })
  const handleDownload = async () => {
-  await downloadPDF();
+  // await downloadPDF();
  }
 
  const [{ isOver }, drop] = useDrop(() => ({
@@ -93,7 +95,7 @@ export default function DocumentPanelView() {
     </div>
     <div className="Example__container__document" ref={setContainerRef}>
      <div ref={drop} className='w-full h-full'>
-      <Document className="Example__container__document" file={file} onLoadSuccess={onDocumentLoadSuccess} options={options}>
+      <Document className="Example__container__document" file={file} onLoadSuccess={handleDocumentLoadSuccess} options={options}>
        {Array.from(new Array(numPages), (el, index) => (
         <Page
          className="relative"

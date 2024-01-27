@@ -8,10 +8,11 @@ import 'react-pdf/dist/esm/Page/TextLayer.css';
 
 // import './Sample.css';
 
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
- 'pdfjs-dist/build/pdf.worker.min.js',
- import.meta.url,
-).toString();
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+// pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+//  'pdfjs-dist/build/pdf.worker.min.js',
+//  import.meta.url,
+// ).toString();
 
 const options = {
  cMapUrl: '/cmaps/',
@@ -88,11 +89,14 @@ const PdfViewer: React.FC<PdfViewerProps> = () => {
 
  // Calculate page positions when the component mounts
  useEffect(() => {
-  calculatePagePositions();
-  window.addEventListener('resize', calculatePagePositions);
-  return () => {
-   window.removeEventListener('resize', calculatePagePositions);
-  };
+  if (window.document) {
+   calculatePagePositions();
+   window.addEventListener('resize', calculatePagePositions);
+   return () => {
+    window.removeEventListener('resize', calculatePagePositions);
+   };
+
+  }
  }, []);
 
  // Determine the page the dragged element is on
@@ -151,20 +155,21 @@ const PdfViewer: React.FC<PdfViewerProps> = () => {
  };
 
  return (
-  <div
-   ref={pdfContainerRef}
-   onDrop={handleDrop}
-   onDragOver={handleDragOver}
-   style={{
-    width: '100%',
-    height: '100%',
-    overflow: 'auto',
-    transform: `scale(${scale})`,
-    transformOrigin: 'top left',
-    position: 'relative', // Required for the drop indicator
-   }}
-   onMouseDown={handleMouseDown}
-  >
+  // <div
+  //  ref={pdfContainerRef}
+  //  onDrop={handleDrop}
+  //  onDragOver={handleDragOver}
+  //  style={{
+  //   width: '100%',
+  //   height: '100%',
+  //   overflow: 'auto',
+  //   transform: `scale(${scale})`,
+  //   transformOrigin: 'top left',
+  //   position: 'relative', // Required for the drop indicator
+  //  }}
+  //  onMouseDown={handleMouseDown}
+  // >
+  <>
    {/* Drop indicator */}
    {dropIndicatorPosition && (
     <div
@@ -207,7 +212,9 @@ const PdfViewer: React.FC<PdfViewerProps> = () => {
     <button onClick={zoomOut}>Zoom Out</button>
     <button onClick={resetZoom}>Reset Zoom</button>
    </div>
-  </div>
+
+  </>
+  // </div>
  );
 };
 
