@@ -1,113 +1,88 @@
-import Image from 'next/image'
+'use client'
+// import DocumentPanelView from './components/DocumentPanelView'
+// import { Rnd } from "react-rnd";
+// import Draggable from './components/Draggable';
+// import { DndProvider } from 'react-dnd';
+import { useDrag, useDrop, DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend'
+
+
+import React from 'react';
+// import { Document, Page } from 'react-pdf';
+// import Comp1 from './components/Comp1';
+// import Comp2 from './components/Comp2';
+// import Comp3 from './components/Comp3';
+// import Comp4 from './components/Comp4';
+// import Comp5 from './components/Comp5';
+// import Comp6 from './components/Comp6';
+// import Comp7 from './components/Comp7';
+// import Comp8 from './components/Comp8';
+// import Comp9 from './components/Comp9';
+// import Comp10 from './components/Comp10';
+// import Comp11 from './components/RND/Comp11';
+// import Comp12 from './components/RND/Comp12';
+// import Comp13 from './components/RND/Comp13';
+// import Comp14 from './components/RND/Comp14';
+// import Comp15 from './components/RND/Comp15';
+import EsignComp from './components/DND/esignComp';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <DndProvider backend={HTML5Backend}>
+      <EsignComp />
+    </DndProvider>
+  )
+  return (
+    <></>
+    // <DndProvider backend={HTML5Backend}>
+    //   <main className='w-full min-h-[100vh] bg-white flex'>
+    //     <SideBar />
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+    //     <main className='w-[80%] bg-blue-50 min-h-[80vh] text-black'>
+    //       <nav className='w-full p-3 bg-white flex items-center justify-center'>
+    //         <div className='w-[60%] h-full flex gap-5 justify-center'>
+    //           <div className='p-2 border-b-2 w-[10%] text-center border-purple-700'>Sign</div>
+    //           <div className='p-2 '>Preview</div>
+    //         </div>
+    //       </nav>
+    //       <section className='w-full h-[100vh] overflow-scroll'>
+    //         <DocumentPanelView />
+    //       </section>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+    //     </main>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    //   </main>
+    // </DndProvider>
   )
 }
+
+// function SideBar() {
+//   const menus = ["Signature"]
+//   // const menus = ["Signature", "Initials", "Date Signed", "Name Prefix", "Name", "Phone", "Email", "Text"]
+//   return (
+//     <aside className='w-[20%] bg-purple-500 min-h-[80vh] text-black '>
+//       <div className='p-10'></div>
+//       {
+//         menus.map((menu, i) => (
+//           // <Rnd>
+//           <Draggable key={i} >
+//             <div className='w-[60%] p-3 flex gap-3 flex-col mb-2 font-semibold text-sm bg-white rounded-md shadow-md'>
+//               <div className='w-[10%]'></div>
+//               <div>
+//                 <span className=''>{menu}</span>
+//               </div>
+//             </div>
+//           </Draggable>
+//           // </Rnd>
+//         ))
+//       }
+
+//     </aside>
+//   )
+// }
+
+
+
+
+
