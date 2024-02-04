@@ -25,6 +25,7 @@ import React from 'react';
 // import Comp14 from './components/RND/Comp14';
 // import Comp15 from './components/RND/Comp15';
 import EsignComp from './components/DND/esignComp';
+import Comp19 from './components/RND/Comp19';
 
 export default function Home() {
   // return (
@@ -32,6 +33,7 @@ export default function Home() {
   //     <EsignComp />
   //   </DndProvider>
   // )
+  return <Comp19 />
   return (
     <DndProvider backend={HTML5Backend}>
       <main className='w-full min-h-[100vh] bg-white flex'>
